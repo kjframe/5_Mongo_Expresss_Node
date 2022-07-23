@@ -1,8 +1,5 @@
 const express = require('express');
-
 const partnerRouter = express.Router();
-
-partnerRouter.use(express.json());
 
 partnerRouter.route('/')
 .all((req, res, next) => {
@@ -34,13 +31,11 @@ partnerRouter.route('/:partnerId')
     res.end(`Will send details of the partner: ${req.params.partnerId} to you`);
 })
 .post((req, res) => {
-  res.statusCode = 403;
-    res.end(`POST operation not supported on /partners/${req.params.partnerId}`);
+    res.end(`Updating the partner: ${req.params.partnerId}. Will update the partners: ${req.body.name} with description: ${req.body.description}`);
 })
 .put((req, res) => {
-    res.write(`Updating the partner: ${req.params.partnerId}\n`);
-    res.end(`Will update the partner: ${req.body.name}
-        with description: ${req.body.description}`);
+    res.statusCode = 403;
+    res.end(`PUT operation not supported on /partners`);
 })
 .delete((req, res) => {
     res.end(`Deleting partner: ${req.params.partnerId}`);

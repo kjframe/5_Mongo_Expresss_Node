@@ -1,8 +1,5 @@
 const express = require('express');
-
 const promotionRouter = express.Router();
-
-promotionRouter.use(express.json());
 
 promotionRouter.route('/')
 .all((req, res, next) => {
@@ -34,13 +31,11 @@ promotionRouter.route('/:promotionId')
     res.end(`Will send details of the promotion: ${req.params.promotionId} to you`);
 })
 .post((req, res) => {
-  res.statusCode = 403;
-    res.end(`POST operation not supported on /promotions/${req.params.promotionId}`);
+    res.end(`Updating the partnerL ${req.params.partnerId}. Will update the partners: ${req.body.name} with description: ${req.body.description}`)
 })
 .put((req, res) => {
-    res.write(`Updating the promotion: ${req.params.promotionId}\n`);
-    res.end(`Will update the promotion: ${req.body.name}
-        with description: ${req.body.description}`);
+    res.statusCode = 403;
+    res.end(`PUT operation not supported on /partners`);
 })
 .delete((req, res) => {
     res.end(`Deleting promotion: ${req.params.promotionId}`);

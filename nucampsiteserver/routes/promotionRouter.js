@@ -3,7 +3,7 @@ const promotionRouter = express.Router();
 
 promotionRouter.route('/')
 .all((req, res, next) => {
-    res.statusCode = 200;
+    res.statusCode = 200; 
     res.setHeader('Content-Type', 'text/plain');
     next();
 })
@@ -11,19 +11,20 @@ promotionRouter.route('/')
     res.end('Will send all the promotions to you');
 })
 .post((req, res) => {
-    res.end(`Will add the promotion: ${req.body.name} with description: ${req.body.description}`);
+    res.end(`Will add the Promotion: ${req.body.name} with description: ${req.body.description}`);
 })
 .put((req, res) => {
-    res.statusCode = 403;
+    res.statusCode = 403; 
     res.end('PUT operation not supported on /promotions');
 })
 .delete((req, res) => {
     res.end('Deleting all promotions');
-}); 
+})
+
 
 promotionRouter.route('/:promotionId')
 .all((req, res, next) => {
-    res.statusCode = 200;
+    res.statusCode = 200; 
     res.setHeader('Content-Type', 'text/plain');
     next();
 })
@@ -31,14 +32,14 @@ promotionRouter.route('/:promotionId')
     res.end(`Will send details of the promotion: ${req.params.promotionId} to you`);
 })
 .post((req, res) => {
-    res.end(`Updating the partnerL ${req.params.partnerId}. Will update the partners: ${req.body.name} with description: ${req.body.description}`)
+    res.end(`Updating the promotion: ${req.params.promotionId}. Will update the promotion: ${req.body.name} with description: ${req.body.description}`)
 })
 .put((req, res) => {
-    res.statusCode = 403;
-    res.end(`PUT operation not supported on /partners`);
+    res.statusCode = 403; 
+    res.end('PUT operation not supported on /promotions');
 })
 .delete((req, res) => {
     res.end(`Deleting promotion: ${req.params.promotionId}`);
-});
+})
 
 module.exports = promotionRouter;

@@ -1,10 +1,7 @@
 const express = require('express');
-const bodyParser = require('body-parser');
 const Campsite = require('../models/campsite');
 
 const campsiteRouter = express.Router();
-
-campsiteRouter.use(bodyParser.json());
 
 campsiteRouter.route('/')
 .get((req, res, next) => {
@@ -215,5 +212,7 @@ campsiteRouter.route('/:campsiteId/comments/:commentId')
     })
     .catch(err => next(err));
 });
+
+module.exports = campsiteRouter;
 
 module.exports = campsiteRouter;
